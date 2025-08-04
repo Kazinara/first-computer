@@ -2,12 +2,13 @@ from gtts import gTTS
 import pdfplumber
 file_path="text.pdf"
 with pdfplumber.PDF(open(file_path, mode='rb')) as pdf_file:
+    pages = ''.join([page.extract_text() for page in pdf_file.pages]).replace('\n',' ')
     def get_txt():
-        pages = ''.join([page.extract_text() for page in pdf_file.pages]).replace('\n',' ')
-        print(pages)
-        return pages
+        pdf_file_ = pages    
+        return pdf_file_
     
     text_one = get_txt()
+    print(text_one)
 
 
     def get_sound(txt):
